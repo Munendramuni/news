@@ -3,6 +3,7 @@ const bodyParser=require("body-parser");
 const app=express();
 const request=require("request");
 const https=require("https")
+require("dotenv").config();
 
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -32,11 +33,11 @@ app.post("/",function(req,res){
 			    ]
 	};
 	const jsonData=JSON.stringify(data);
-	const url=urlkey;
+	const url=process.env.API_KEY;
 	const  options={
          method:"POST",
-         auth:apikey
-	};
+         auth:process.env.AUTHEN
+	};    
 
 	const request= https.request(url,options,function(response){
 
